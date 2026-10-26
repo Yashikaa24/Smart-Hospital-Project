@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #1e293b; /* slate-800 */
+  background-color: #f8fafc; /* light medical background */
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  background-image: radial-gradient(at top right, #e0f2fe, #f8fafc);
+  background-attachment: fixed;
+  color: #1e293b;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.2);
+}
+
+/* Glass effect modified to be clean medical glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px -10px rgba(148, 163, 184, 0.12), 0 1px 3px 0 rgba(148, 163, 184, 0.05);
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(148, 163, 184, 0.06), 0 2px 8px -1px rgba(148, 163, 184, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -4px rgba(148, 163, 184, 0.15), 0 4px 12px -2px rgba(148, 163, 184, 0.08);
+  border-color: #cbd5e1;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold shadow-md shadow-primary-500/20 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-white text-primary-500 border border-primary-500 rounded-xl font-semibold hover:bg-primary-50 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+  cursor: pointer;
+}
+
+.input-field {
+  @apply w-full bg-white border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition-all shadow-sm;
+}
+
+h1, h2, h3, h4 {
+  @apply tracking-tight font-bold text-slate-900;
+  font-family: 'Poppins', sans-serif;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-700;
+}
+
+/* Loading Shimmer Effect */
+.shimmer-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.shimmer-bg::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.6) 20%,
+    rgba(255, 255, 255, 0.8) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Map specific styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+.leaflet-popup-tip {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+/* ── Safe Entrance Animation ──────────────────────────────────────────────────
+   Replaces Tailwind's animate-in fade-in which can keep opacity at 0 or
+   leave elements invisible. This version always settles at opacity: 1.
+*/
+@keyframes safeEntrance {
+  from {
+    opacity: 0.6;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.entrance-fade {
+  animation: safeEntrance 0.5s ease-out forwards;
+  opacity: 1; /* explicit fallback */
+}
+
+/* ── Animation Safety Overrides ───────────────────────────────────────────────
+   Tailwind's animate-in / fade-in classes set initial opacity to 0 which can
+   leave card text invisible when the animation doesn't fire or stalls.
+   These overrides ensure text content is ALWAYS readable.
+*/
+
+/* 1. Force any element with animate-in to never go below 0.85 opacity */
+[class*="animate-in"],
+[class*="fade-in"] {
+  --tw-enter-opacity: 0.85;
+  opacity: 1;
+}
+
+/* 2. Glass cards and ALL their children must always be fully opaque */
+.glass-card {
+  opacity: 1 !important;
+}
+
+.glass-card * {
+  opacity: 1 !important;
+}
+
+/* 3. Card content inside animated wrappers — belt-and-suspenders */
+[class*="animate-in"] .glass-card,
+[class*="animate-in"] .glass-card *,
+[class*="fade-in"] .glass-card,
+[class*="fade-in"] .glass-card * {
+  opacity: 1 !important;
+}
+
+/* 4. Headings, paragraphs, and interactive elements should never be invisible */
+[class*="animate-in"] h1,
+[class*="animate-in"] h2,
+[class*="animate-in"] h3,
+[class*="animate-in"] h4,
+[class*="animate-in"] p,
+[class*="animate-in"] span,
+[class*="animate-in"] a,
+[class*="animate-in"] button,
+[class*="animate-in"] svg,
+[class*="animate-in"] img {
+  opacity: 1 !important;
+}
+
+/* 5. Specific page wrapper overrides — ensure cards on patient dashboard are visible */
+.space-y-8 > div,
+.space-y-8 > div * {
+  animation-fill-mode: forwards;
+}
+
+/* ── Scan animation for QR scanner ────────────────────────────────────────── */
+@keyframes scanLine {
+  0%   { top: 0%; }
+  50%  { top: calc(100% - 2px); }
+  100% { top: 0%; }
+}
+
+@keyframes scanPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+}
+
+@keyframes bluePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(2, 132, 199, 0); }
+}
+
+@keyframes scanSuccess {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes scanError {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-5px); }
+  80%      { transform: translateX(5px); }
+}
+
+@keyframes torchGlow {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(250, 204, 21, 0.6); }
+  50%      { box-shadow: 0 0 16px 6px rgba(250, 204, 21, 0.9); }
+}
+
+/* ── Scanner corner pulse (Google Lens-style) ─────────────────────────────── */
+@keyframes cornerPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+@keyframes frameGlow {
+  0%, 100% { box-shadow: inset 0 0 20px 2px rgba(34, 197, 94, 0.08); }
+  50%      { box-shadow: inset 0 0 30px 6px rgba(34, 197, 94, 0.15); }
+}
+
+.scan-laser {
+  animation: scanLine 2s ease-in-out infinite;
+}
+
+.scan-success {
+  animation: scanSuccess 0.4s ease-out forwards;
+}
+
+.scan-error {
+  animation: scanError 0.5s ease-out forwards;
+}
+
+.torch-active {
+  animation: torchGlow 1.5s ease-in-out infinite;
+}
+
+.scan-corner-pulse {
+  animation: cornerPulse 2s ease-in-out infinite;
+}
+
+.scan-frame-glow {
+  animation: frameGlow 2.5s ease-in-out infinite;
+}

@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+sqlalchemy
+pymysql
+psycopg2-binary
+requests
+python-dotenv
+anthropic
+apscheduler
+pydantic[email]
+qrcode
+pillow
+python-jose[cryptography]
+passlib[bcrypt]
+cryptography
+google-auth
+google-auth-httplib2
