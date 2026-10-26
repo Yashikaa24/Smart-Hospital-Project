@@ -1,126 +1,84 @@
-# 🏥 Smart Hospital App
+# 🏥 Smart Hospital Management System
 
-An AI-powered Smart Hospital Management & Patient Portal system built with **React + FastAPI**.
-
----
+Smart Hospital is a team project designed to improve hospital management and patient services using modern web technologies and AI-based features.
 
 ## ✨ Features
 
-### 👤 Patient Portal
-- **Hospital Explorer** — Interactive map (Leaflet) with crowd levels 🟢🟡🔴, beds, ICU, ambulance stats
-- **AI Queue Predictions** — Real-time wait times & confidence scores per doctor
-- **Half Token System** — Book from home, auto-converts to Full Token on 200m geofence entry
-- **Suggested Departure Time** — Calculates when to leave based on queue ETA & travel time
-- **QR Scan** — Scan doctor QR to join queue instantly
-- **Live Token Tracker** — Real-time queue updates every 10 seconds
+- 🏥 Hospital and department information
+- 👨‍⚕️ Doctor-related services
+- 🧑‍⚕️ Patient portal
+- 🎫 Queue management
+- 🤖 AI-based queue prediction
+- 📊 Hospital management dashboard
 
-### 🩺 Doctor Portal
-- Manage patient queue (Call, Mark Present, Complete)
-- QR code generation for clinic
-- Live queue dashboard
+*Note: Features may vary depending on the implemented functionality.*
 
-### 🏢 Hospital Management
-- Resource management (Beds, ICU, Ambulances)
-- Staff management & analytics
+## 🛠️ Technologies Used
 
-### 🤖 AI Features
-- **Symptom Triage** — AI-powered urgency evaluation (Claude API)
-- **Virtual Assistant** — Medical Q&A chatbot
-- **Queue Prediction** — Dynamic wait time with confidence scoring
+- **Frontend:** React, JavaScript, CSS
+- **Backend:** Python, FastAPI
+- **Tools:** Git, GitHub, Visual Studio Code
 
----
+## 📁 Project Structure
 
-## 🛠️ Tech Stack
-
-### Frontend
-| Technology | Purpose |
-|-----------|---------|
-| React 19 + Vite 8 | UI framework & build tool |
-| React Router v7 | Client-side routing |
-| Zustand | Global state management |
-| Tailwind CSS | Styling |
-| Leaflet + React Leaflet | Interactive maps |
-| Recharts | Analytics charts |
-| Axios | HTTP client |
-| Lucide React | Icons |
-| Capacitor | Android mobile wrapper |
-
-### Backend
-| Technology | Purpose |
-|-----------|---------|
-| FastAPI | REST API framework |
-| SQLAlchemy + SQLite | ORM + Database |
-| Pydantic | Schema validation |
-| APScheduler | Background job scheduling |
-| Anthropic (Claude) | AI features |
-| Clerk | Authentication |
-| python-jose + passlib | JWT & password hashing |
-
----
+```text
+Smart-Hospital-Project/
+├── hospital-backend/
+├── hospital-frontend/
+├── test_api.py
+├── .gitignore
+└── README.md
+```
 
 ## 🚀 Getting Started
 
-### Backend
+### Prerequisites
+
+Install Python, Node.js, npm, and Git before running the project.
+
+### Clone the Repository
+
 ```bash
-cd hospital-backend
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python -m app.init_db
-uvicorn app.main:app --port 8000 --reload
+git clone https://github.com/Yashikaa24/Smart-Hospital-Project.git
+cd Smart-Hospital-Project
 ```
 
-### Frontend
+### Run the Frontend
+
 ```bash
 cd hospital-frontend
 npm install
 npm run dev
 ```
 
-Open: `http://localhost:5173`
+Follow the backend setup instructions and install the required dependencies provided in the project files to run the backend.
 
----
+## 🎯 Project Objective
 
-## 📱 Android Build
-```bash
-cd hospital-frontend
-npm run mobile:sync
-npm run mobile:android
-```
+The objective of this project is to explore how web technologies and AI-based features can support hospital management and improve the patient experience.
 
----
+## 👥 Team Members
 
-## 📁 Project Structure
-```
-smarthospitalapp/
-├── hospital-backend/
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── models.py
-│   │   ├── schemas.py
-│   │   ├── init_db.py
-│   │   ├── routes/
-│   │   └── services/
-│   └── requirements.txt
-└── hospital-frontend/
-    ├── src/
-    │   ├── pages/
-    │   ├── store.js
-    │   ├── clerk-mock.jsx
-    │   └── App.jsx
-    └── package.json
-```
+**Original Project Creator:** Divyansh Dubey
 
----
+**Team Members:**
+- Yashika Singh
+- Ragni Singh
+- Aditya Kumar Prasad
+- Harshit Choudhary
+- Utkarsh Atulkar
 
-## 🔗 Key API Endpoints
+## 💻 My Contribution — Yashika Singh
 
-| Method | Endpoint | Description |
-|--------|---------|-------------|
-| GET | `/hospitals/` | List hospitals with live stats |
-| GET | `/hospitals/{id}/details` | Departments, doctors, AI predictions |
-| POST | `/tokens/create` | Create Full or Half Token |
-| GET | `/tokens/{id}` | Token details with ETA |
-| GET | `/tokens/queue/{doctor_id}` | Live queue listing |
-| PATCH | `/tokens/location/{id}` | Update GPS & trigger geofence |
-| POST | `/tokens/call/{id}` | Doctor calls next patient |
+- Uploaded and organized the team project in a personal GitHub repository.
+- Worked on project documentation and README organization.
+
+*Additional contributions will be added as development and testing work is completed.*
+
+## 🙌 Acknowledgements
+
+Thanks to Divyansh Dubey and all team members for their collaboration on this project.
+
+## 📄 License
+
+Please check the original project's license and obtain the necessary permissions before redistributing or reusing the project.
